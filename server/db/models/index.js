@@ -1,6 +1,7 @@
 const User = require('./user')
 const Form = require('./form')
 const Question = require('./question')
+const Response = require('./response')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -18,5 +19,6 @@ const Question = require('./question')
 module.exports = {
   User,
   Form,
-  Question
+  Question,
+  Response
 }
