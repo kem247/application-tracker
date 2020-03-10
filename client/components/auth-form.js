@@ -2,44 +2,130 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {Link} from 'react-router-dom'
+
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import TextField from '@material-ui/core/TextField'
+import Grid from '@material-ui/core/Grid'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Typography from '@material-ui/core/Typography'
+import {makeStyles} from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
+  form: {
+    width: '100%',
+    marginTop: theme.spacing(3)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  }
+}))
 
 /**
  * COMPONENT
  */
+
 const AuthForm = props => {
+  const classes = useStyles()
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
-    </div>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          {name === 'login' ? 'Admin Login' : 'Create New Admin'}
+        </Typography>
+        <form className={classes.form} onSubmit={handleSubmit} name={name}>
+          <Grid container spacing={2}>
+            {name === 'login' ? null : (
+              <Grid item xs={12}>
+                <TextField
+                  name="accountName"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="accountName"
+                  label="Full Name"
+                  autoFocus
+                />
+              </Grid>
+            )}
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                required
+              />
+            </Grid>
+            <Button
+              type="submit"
+              name="action"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              {displayName}
+            </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                {name === 'login' ? (
+                  ''
+                ) : (
+                  <Link to="/home">Go back to Home</Link>
+                )}
+              </Grid>
+            </Grid>
+            <div className="row">
+              {error &&
+                error.response && (
+                  <div className="col s12" style={{color: '#fc7070'}}>
+                    {' '}
+                    {error.response.data}{' '}
+                  </div>
+                )}
+            </div>
+          </Grid>
+        </form>
+      </div>
+    </Container>
   )
 }
 
 /**
  * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
  */
 const mapLogin = state => {
   return {
@@ -52,7 +138,7 @@ const mapLogin = state => {
 const mapSignup = state => {
   return {
     name: 'signup',
-    displayName: 'Sign Up',
+    displayName: 'Create New Admin',
     error: state.user.error
   }
 }
