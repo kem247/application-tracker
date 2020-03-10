@@ -3,7 +3,7 @@ const db = require('../db')
 
 const Response = db.define('response', {
   applicantReponse: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     get: function() {
       return JSON.parse(this.getDataValue('applicantReponse'))
     },

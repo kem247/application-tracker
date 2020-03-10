@@ -7,4 +7,4 @@ const Form = db.define('form', {
   }
 })
 
-module.export = Form
+module.exports = Form
