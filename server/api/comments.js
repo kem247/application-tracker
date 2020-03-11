@@ -1,14 +1,15 @@
-const {Comments} = require('../db/models')
-const router = require('express').Router()
-router.get('/', async (req, res, next) => {
+const commentRouter = require('express').Router()
+const {Comment} = require('../db/models/comment')
+
+commentRouter.get('/', async (req, res, next) => {
   try {
-    let comments = await Comments.findAll()
+    let comments = await Comment.findAll()
+    console.log('comments', comments)
     res.json(comments)
   } catch (err) {
     next(err)
   }
 })
 
+module.exports = commentRouter
 //get all the comments associated with the response id
-
-module.exports = router

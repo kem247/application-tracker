@@ -1,6 +1,9 @@
-const {Form, Question} = require('..db/models')
-const router = require('express').Router()
-router.get('/', async (req, res, next) => {
+const formRouter = require('express').Router()
+const {Form, Question} = require('../db')
+// const Form = require('..db/models/form')
+// const Question = require('../db/models/question')
+
+formRouter.get('/', async (req, res, next) => {
   try {
     const form = await Form.findAll()
 
@@ -10,7 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+formRouter.get('/:id', async (req, res, next) => {
   try {
     let formId = await req.params.id
     let form = Form.findByPk({
@@ -24,7 +27,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/form', async (req, res, next) => {
+formRouter.post('/form', async (req, res, next) => {
   try {
     const {title} = req.body
 
@@ -37,10 +40,10 @@ router.post('/form', async (req, res, next) => {
     next(err)
   }
 })
+
+module.exports = formRouter
 //getId
 
 //response route
 //comments route
 //questions route
-
-module.exports = router

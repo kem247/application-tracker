@@ -1,6 +1,7 @@
-const {Response} = require('../db/models')
-const router = require('express').Router()
-router.get('/', async (req, res, next) => {
+const responseRouter = require('express').Router()
+const {Response} = require('../db/models/response')
+
+responseRouter.get('/', async (req, res, next) => {
   try {
     const responses = await Response.findAll()
     res.json(responses)
@@ -9,7 +10,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/response', async (req, res, next) => {
+responseRouter.post('/response', async (req, res, next) => {
   try {
     let id = req.body.id
     const response = await Response.create({
@@ -22,4 +23,4 @@ router.post('/response', async (req, res, next) => {
   }
 })
 
-module.exports = router
+module.exports = responseRouter
