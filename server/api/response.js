@@ -1,5 +1,5 @@
-const {Response, Question} = require('../db/models')
-
+const {Response} = require('../db/models')
+const router = require('express').Router()
 router.get('/', async (req, res, next) => {
   try {
     const responses = await Response.findAll()
@@ -21,3 +21,5 @@ router.post('/response', async (req, res, next) => {
     next(err)
   }
 })
+
+module.exports = router

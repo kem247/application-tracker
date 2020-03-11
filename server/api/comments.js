@@ -1,5 +1,5 @@
 const {Comments} = require('../db/models')
-
+const router = require('express').Router()
 router.get('/', async (req, res, next) => {
   try {
     let comments = await Comments.findAll()
@@ -10,3 +10,5 @@ router.get('/', async (req, res, next) => {
 })
 
 //get all the comments associated with the response id
+
+module.exports = router

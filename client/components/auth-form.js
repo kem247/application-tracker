@@ -86,7 +86,6 @@ const AuthForm = props => {
                 label="Password"
                 type="password"
                 id="password"
-                required
               />
             </Grid>
             <Button

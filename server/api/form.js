@@ -1,5 +1,5 @@
-const {Form, Questions} = require('..db/models')
-
+const {Form, Question} = require('..db/models')
+const router = require('express').Router()
 router.get('/', async (req, res, next) => {
   try {
     const form = await Form.findAll()
@@ -31,7 +31,7 @@ router.post('/form', async (req, res, next) => {
     const newForm = await Form.create({
       title: title
     })
-    const questions = await Questions.findByPk(req.body.id)
+    const questions = await Question.findByPk(req.body.id)
     res.json(newForm, questions)
   } catch (err) {
     next(err)
@@ -42,3 +42,5 @@ router.post('/form', async (req, res, next) => {
 //response route
 //comments route
 //questions route
+
+module.exports = router
