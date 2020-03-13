@@ -5,7 +5,7 @@ const {Form, Question} = require('../db')
 
 formRouter.get('/', async (req, res, next) => {
   try {
-    const form = await Form.findAll()
+    const form = await Form.findAll({attributes: ['id', 'username']})
 
     res.json(form)
   } catch (err) {
@@ -30,12 +30,21 @@ formRouter.get('/:id', async (req, res, next) => {
 formRouter.post('/form', async (req, res, next) => {
   try {
     const {title} = req.body
-
+    let questions = req.body.question
     const newForm = await Form.create({
-      title: title
+      title: title,
+      question: questions
     })
-    const questions = await Question.findByPk(req.body.id)
-    res.json(newForm, questions)
+
+    const id = questions.forEach(async q => {
+      await Question.create({
+        formId: newForm.id,
+        questions: q.questions,
+        type: q.type
+      })
+    })
+    // const questions = await Question.findByPk(req.body.id)
+    res.json({status: 'success', id: id})
   } catch (err) {
     next(err)
   }
