@@ -1,11 +1,11 @@
 const responseRouter = require('express').Router()
-const {Response} = require('../db/models/response')
-
+const Response = require('../db/models/response')
+// const Question = require('../db/models/question')
 responseRouter.get('/', async (req, res, next) => {
   try {
+    // console.log('res', req.params)
     const responses = await Response.findAll()
     res.json(responses)
-    console.log('res', responses)
   } catch (err) {
     next(err)
   }
@@ -14,21 +14,28 @@ responseRouter.get('/', async (req, res, next) => {
 responseRouter.post('/', async (req, res, next) => {
   try {
     let responseId = await req.params.id
-    let questions = req.body.questions
-    let response = Response.findByPk({
-      where: {
-        id: responseId
-      }
+    let questions = req.body.userResponse
+    console.log('questions', questions)
+    const {applicantResponse, email, status} = req.body
+    console.log('reqBody', req.body)
+    let response = await Response.create({
+      id: responseId,
+      applicantResponse: applicantResponse,
+      email: email,
+      status: status
     })
-
-    const createResponse = await Response.create({
-      questionId: questions.id,
-      response: response,
-      email: response.email,
-      status: response.status
-    })
-
-    res.json(createResponse)
+    console.log('resp', response)
+    // const questionId = questions.forEach(async q => {
+    //   await Question.create({
+    //     questionId: q.questionId,
+    //     response: q.response
+    //     // response: response,
+    //     // email: response.email,
+    //     // status: response.status
+    //   })
+    // })
+    // console.log(questionId)
+    res.json(response)
   } catch (err) {
     next(err)
   }
