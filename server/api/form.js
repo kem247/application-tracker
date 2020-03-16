@@ -1,7 +1,7 @@
 const formRouter = require('express').Router()
-const {Form, Question} = require('../db')
+const Form = require('../db/models/form')
 // const Form = require('..db/models/form')
-// const Question = require('../db/models/question')
+const Question = require('../db/models/question')
 
 formRouter.get('/', async (req, res, next) => {
   try {
@@ -16,36 +16,32 @@ formRouter.get('/', async (req, res, next) => {
 formRouter.get('/:id', async (req, res, next) => {
   try {
     let formId = await req.params.id
-    let form = Form.findByPk({
-      where: {
-        id: formId
-      }
-    })
+    let form = await Form.findByPk(formId)
     res.json(form)
   } catch (err) {
     next(err)
   }
 })
 
-formRouter.post('/createform', async (req, res, next) => {
+formRouter.post('/', async (req, res, next) => {
   try {
     const {title} = req.body
-    let questions = req.body.question
+    let questions = req.body.questions
     const newForm = await Form.create({
       title: title,
-      question: questions
+      questions: questions
     })
 
     const questionId = questions.forEach(async q => {
       await Question.create({
-        formId: newForm.id,
+        // formId: newForm.id,
         question: q.questions,
         type: q.type,
         options: q.options
       })
     })
-    // const questions = await Question.findByPk(req.body.id)
-    res.json({status: 'success', id: questionId.formId})
+    console.log('questionId', questionId)
+    res.json({status: 'success', uniqueId: newForm.id})
   } catch (err) {
     next(err)
   }

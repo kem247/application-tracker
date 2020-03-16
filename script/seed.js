@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Response, Form} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -21,8 +21,21 @@ async function seed() {
       SuperAdmin: false
     })
   ])
-
+  const response = await Promise.all([
+    Response.create({
+      applicantResponse: 'Hi I am okay',
+      email: 'cody@email.com',
+      status: 'under review'
+    })
+  ])
+  const form = await Promise.all([
+    Form.create({
+      title: 'test title'
+    })
+  ])
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${response.length} response(s)`)
+  console.log(`seeded ${form.length} form(s)`)
   console.log(`seeded successfully`)
 }
 

@@ -13,6 +13,7 @@ const Response = db.define('response', {
   },
   email: {
     type: Sequelize.STRING,
+    unique: true,
     allowNull: false
   },
   status: {
