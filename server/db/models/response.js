@@ -11,6 +11,11 @@ const Response = db.define('response', {
       return this.setDataValue('applicantReponse', JSON.stringify(val))
     }
   },
+  email: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false
+  },
   status: {
     type: Sequelize.STRING,
     allowNull: false
