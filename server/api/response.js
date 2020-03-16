@@ -1,5 +1,6 @@
 const responseRouter = require('express').Router()
 const Response = require('../db/models/response')
+const Form = require('../db/models/form')
 // const Question = require('../db/models/question')
 responseRouter.get('/', async (req, res, next) => {
   try {
@@ -16,13 +17,19 @@ responseRouter.post('/', async (req, res, next) => {
     let responseId = await req.params.id
     let questions = req.body.userResponse
     console.log('questions', questions)
+    const form = await Form.findOne({
+      where: {
+        id: req.body.formId
+      }
+    })
     const {applicantResponse, email, status} = req.body
     console.log('reqBody', req.body)
     let response = await Response.create({
       id: responseId,
       applicantResponse: applicantResponse,
       email: email,
-      status: status
+      status: status,
+      formId: form.id
     })
     console.log('resp', response)
     // const questionId = questions.forEach(async q => {
