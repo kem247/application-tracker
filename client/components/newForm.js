@@ -2,10 +2,7 @@ import React, {Component} from 'react'
 import QuestionsList from './QuestionsList'
 import QuestionInput from './QuestionInput'
 import axios from 'axios'
-import uuid from 'react-uuid'
-//datepicker
-import DatePicker from 'react-datepicker'
-// import "react-datepicker/dist/react-datepicker.css";
+
 //semantic ui
 import {
   Form,
@@ -27,18 +24,18 @@ class newForm extends Component {
     option: ''
   }
 
-  //   handleSubmit = (event) => {
-  //     console.log(this.state);
-  //     event.preventDefault()
-  //     axios
-  //       .post('https://jsonplaceholder.typicode.com/posts', this.state)
-  //       .then(res => {
-  //         console.log(res);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       })
-  //   }
+  handleSubmit = event => {
+    console.log(this.state)
+    event.preventDefault()
+    axios
+      .post('https://localhost/api/form', this.state)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
 
   handleChange = (e, id) => {
     this.setState({
