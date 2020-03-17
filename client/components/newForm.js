@@ -25,10 +25,14 @@ class newForm extends Component {
   }
 
   handleSubmit = event => {
-    console.log(this.state)
+    console.log('Submitting:', this.state)
     event.preventDefault()
+    this.handleAddButton(event)
     axios
-      .post('https://localhost/api/form', this.state)
+      .post('/api/form', {
+        title: this.state.title,
+        questions: this.state.questionsArr
+      })
       .then(res => {
         console.log(res)
       })
@@ -49,7 +53,6 @@ class newForm extends Component {
     let newId = this.state.questionsArr.length
 
     const newQuestionObj = {
-      title: this.state.title,
       id: newId,
       question: this.state.question,
       type: this.state.type,
@@ -60,15 +63,10 @@ class newForm extends Component {
     const updateQuestionsArr = [...this.state.questionsArr, newQuestionObj]
 
     this.setState({
+      title: this.state.title,
       questionsArr: updateQuestionsArr,
       question: ''
     })
-  }
-
-  handleSubmit = e => {
-    e.preventDefault()
-    console.log('submitting')
-    this.handleAddButton(e)
   }
 
   handleQuestionDelete = id => {
@@ -80,13 +78,12 @@ class newForm extends Component {
     })
   }
 
-  handleQuestionEdit = id => {}
-
   render() {
+    // console.log(this.state);
     return (
       <div className="newForm">
         <Segment color="purple">
-          <Form>
+          <Form onSubmit={this.handleSubmit}>
             <Form.Field>
               <input
                 onChange={this.handleChange}
@@ -115,9 +112,7 @@ class newForm extends Component {
               question={this.state.question}
               handleChange={this.handleChange}
             />
-            <Button onClick={this.handleSubmit} type="submit">
-              Submit
-            </Button>
+            <Button type="submit">Submit</Button>
           </Form>
         </Segment>
         <Button icon="plus" onClick={this.handleAddButton} />
