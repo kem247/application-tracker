@@ -4,6 +4,7 @@ router.use('/users', require('./users'))
 router.use('/comments', require('./comments'))
 router.use('/form', require('./form'))
 router.use('/response', require('./response'))
+router.use('/questions', require('./questions'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found')

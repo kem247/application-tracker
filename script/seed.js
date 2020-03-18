@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Response, Form} = require('../server/db/models')
+const {User, Response, Form, Question} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -21,21 +21,49 @@ async function seed() {
       SuperAdmin: false
     })
   ])
-  const response = await Promise.all([
-    Response.create({
-      applicantResponse: 'Hi I am okay',
-      email: 'cody@email.com',
-      status: 'under review'
-    })
-  ])
-  const form = await Promise.all([
-    Form.create({
-      title: 'test title'
+  // const response = await Promise.all([
+  //   Response.create({
+  //     applicantResponse: 'Hi I am okay',
+  //     email: 'cody@email.com',
+  //     status: 'under review'
+  //   })
+  // ])
+  // const form = await Promise.all([
+  //   Form.create({
+  //     title: 'test title'
+  //   })
+  // ])
+  const questions = await Promise.all([
+    Question.create({
+      question: 'First Name:',
+      type: 'text',
+      options: []
+    }),
+    Question.create({
+      question: 'Last Name:',
+      type: 'text',
+      options: []
+    }),
+    Question.create({
+      question: 'Email:',
+      type: 'text',
+      options: []
+    }),
+    Question.create({
+      question: 'City:',
+      type: 'text',
+      options: []
+    }),
+    Question.create({
+      question: 'State:',
+      type: 'text',
+      options: []
     })
   ])
   console.log(`seeded ${users.length} users`)
-  console.log(`seeded ${response.length} response(s)`)
-  console.log(`seeded ${form.length} form(s)`)
+  // console.log(`seeded ${response.length} response(s)`)
+  // console.log(`seeded ${form.length} form(s)`)
+  console.log(`seeded ${questions.length} question(s)`)
   console.log(`seeded successfully`)
 }
 
