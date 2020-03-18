@@ -135,6 +135,7 @@ const mapLogin = state => {
 }
 
 const mapSignup = state => {
+  console.log(state)
   return {
     name: 'signup',
     displayName: 'Create New Admin',
