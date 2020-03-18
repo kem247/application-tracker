@@ -1,13 +1,6 @@
 import React, {Component} from 'react'
 import {Form, Select, Button} from 'semantic-ui-react'
 
-const options = [
-  {text: 'textarea', value: 'textarea'},
-  {text: 'text Input', value: 'text Input'},
-  {text: 'checkbox', value: 'checkbox'},
-  {text: 'date', value: 'date'}
-]
-
 class QuestionInput extends Component {
   render() {
     const {questionsArr, question, id, handleChange} = this.props
@@ -41,13 +34,3 @@ class QuestionInput extends Component {
 }
 
 export default QuestionInput
-
-// {
-//   questionsArr.length >= 0 && question.type === 'checkbox' ?
-//   (<Form.Group grouped>
-//     <label>HTML checkboxes</label>
-//     <Form.Field label='This one' control='input' type='checkbox' />
-//     <Form.Field label='That one' control='input' type='checkbox' />
-//   </Form.Group>) :
-//   null
-// }
