@@ -110,6 +110,7 @@ class newForm extends Component {
               question={this.state.question}
               handleChange={this.handleChange}
             />
+
             <Button type="submit">Submit</Button>
           </Form>
         </Segment>
