@@ -31,7 +31,6 @@ responseRouter.post('/', async (req, res, next) => {
       status: status,
       formId: form.id
     })
-    console.log('resp', response)
     // const questionId = questions.forEach(async q => {
     //   await Question.create({
     //     questionId: q.questionId,
