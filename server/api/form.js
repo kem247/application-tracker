@@ -28,20 +28,17 @@ formRouter.post('/', async (req, res, next) => {
     const {title} = req.body
     let questions = req.body.questions
     const newForm = await Form.create({
-      title: title,
-      questions: questions
+      title: title
     })
 
-    const questionId = questions.forEach(async q => {
+    questions.forEach(async q => {
       await Question.create({
-        // formId: newForm.id,
-        question: q.questions,
+        formId: newForm.id,
+        question: q.question,
         type: q.type,
-        options: q.options
+        options: q.option
       })
     })
-    //questionId is undefined
-    console.log('questionId', questionId)
     res.json({status: 'success', uniqueId: newForm.id})
   } catch (err) {
     next(err)
