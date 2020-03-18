@@ -39,8 +39,6 @@ formRouter.post('/', async (req, res, next) => {
         options: q.option
       })
     })
-    //questionId is undefined
-    // console.log('questionId', questionId)
     res.json({status: 'success', uniqueId: newForm.id})
   } catch (err) {
     next(err)
