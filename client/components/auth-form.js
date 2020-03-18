@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+import {auth, signup} from '../store'
 import {Link} from 'react-router-dom'
 
 import Avatar from '@material-ui/core/Avatar'
@@ -149,7 +149,12 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      if (formName === 'login') {
+        dispatch(auth(email, password, formName))
+      } else {
+        const fullName = evt.target.accountName.value
+        dispatch(signup(fullName, email, password, formName))
+      }
     }
   }
 }
