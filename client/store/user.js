@@ -46,6 +46,15 @@ export const auth = (email, password, method) => async dispatch => {
   }
 }
 
+export const signup = (fullName, email, password, method) => async dispatch => {
+  let res
+  try {
+    res = await axios.post(`/auth/${method}`, {fullName, email, password})
+  } catch (authError) {
+    return dispatch(getUser({error: authError}))
+  }
+}
+
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
