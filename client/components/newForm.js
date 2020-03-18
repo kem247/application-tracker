@@ -47,7 +47,6 @@ class newForm extends Component {
     })
   }
 
-  // here where we are left
   handleAddButton = e => {
     e.preventDefault()
     let newId = this.state.questionsArr.length
@@ -58,7 +57,7 @@ class newForm extends Component {
       type: this.state.type,
       option: ''
     }
-    console.log(newQuestionObj)
+    // console.log(newQuestionObj)
 
     const updateQuestionsArr = [...this.state.questionsArr, newQuestionObj]
 
@@ -79,7 +78,6 @@ class newForm extends Component {
   }
 
   render() {
-    // console.log(this.state);
     return (
       <div className="newForm">
         <Segment color="purple">
