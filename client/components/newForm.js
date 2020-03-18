@@ -28,6 +28,7 @@ class newForm extends Component {
     console.log('Submitting:', this.state)
     event.preventDefault()
     this.handleAddButton(event)
+    console.log('stateQuestions', this.state.questionsArr[0].question)
     axios
       .post('/api/form', {
         title: this.state.title,
@@ -59,12 +60,16 @@ class newForm extends Component {
     }
 
     const updateQuestionsArr = [...this.state.questionsArr, newQuestionObj]
-
+    // const updateQuestionsArr = [
+    //   {id: 45, question: 'hi there', type: 'dfdf', option: ''}
+    // ]
+    console.log('BEFORE', this.state)
     this.setState({
-      title: this.state.title,
-      questionsArr: updateQuestionsArr,
+      title: 'hardcoded title',
+      questionsArr: [{id: 45, question: 'hi there', type: 'dfdf', option: ''}],
       question: ''
     })
+    console.log('AFTER', this.state)
   }
 
   handleQuestionDelete = id => {

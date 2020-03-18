@@ -3,8 +3,7 @@ const db = require('../db')
 
 const Question = db.define('question', {
   question: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
   },
   type: {
     type: Sequelize.STRING
