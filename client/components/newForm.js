@@ -79,7 +79,7 @@ class newForm extends Component {
   render() {
     return (
       <div className="newForm">
-        <Segment color="purple">
+        <Segment color="yellow">
           <Form onSubmit={this.handleSubmit}>
             <Form.Field>
               <input

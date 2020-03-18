@@ -5,22 +5,26 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/newForm">Create Form</Link>
-          <Link to="/signup">New Account</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : // {/* The navbar will show these links before you log in */}
-      null}
-    </nav>
-  </div>
+  <nav style={{display: 'flex', justifyContent: 'center'}}>
+    {isLoggedIn ? (
+      <div>
+        {/* The navbar will show these links after you log in */}
+        <Link className="nav-item" to="/home">
+          Home
+        </Link>
+        <Link className="nav-item" to="/newForm">
+          Create Form
+        </Link>
+        <Link className="nav-item" to="/signup">
+          New Account
+        </Link>
+        <a href="#" onClick={handleClick}>
+          Logout
+        </a>
+      </div>
+    ) : // {/* The navbar will show these links before you log in */}
+    null}
+  </nav>
 )
 
 /**
