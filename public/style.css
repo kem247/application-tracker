@@ -1,5 +1,7 @@
-body {
+body,
+html {
   font-family: sans-serif;
+  height: 100%;
 }
 
 a {
@@ -10,15 +12,28 @@ label {
   display: block;
 }
 
+nav {
+  font-size: 1.2em;
+  background-color: #ffc107;
+}
+
 nav a {
   display: inline-block;
   margin: 1em;
+  color: white;
+  text-decoration: none;
 }
 
-/* form div {
-  display: inline-block;
-} */
+nav a:hover {
+  color: #ff9800;
+}
 
 .newForm {
   padding: 30px 10%;
+}
+
+.homeContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
