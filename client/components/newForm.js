@@ -21,7 +21,7 @@ class newForm extends Component {
     id: null,
     question: '',
     type: 'textarea',
-    option: ''
+    option: []
   }
 
   handleSubmit = event => {

@@ -12,15 +12,21 @@ class userForm extends Component {
     this.handleChange = this.handleSubmit.bind(this)
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value})
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   handleSubmit(event) {
     event.preventDefault()
+    this.handleChange(event)
   }
-
+  async componentDidMount() {
+    await this.props.fetchQuestions()
+  }
   render() {
+    console.log('PROPS', this.props)
     return (
       <form onSubmit={this.handleSubmit}>
         {this.props.questions.map(q => {
@@ -29,7 +35,7 @@ class userForm extends Component {
               {q.question}
               <input
                 key={q.id}
-                type=""
+                type={q.type}
                 value={this.state.value}
                 onChange={this.handleChange}
               />

@@ -18,6 +18,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <Link className="nav-item" to="/signup">
           New Account
         </Link>
+        <Link className="nav-item" to="/application">
+          Application
+        </Link>
         <a href="#" onClick={handleClick}>
           Logout
         </a>

@@ -11,6 +11,7 @@ export const fetchQuestions = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/questions')
+      console.log('DATA', data)
       dispatch(getAllQuestions(data))
     } catch (err) {
       console.error(err)
