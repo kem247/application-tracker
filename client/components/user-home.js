@@ -2,6 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Spinner from './spinner'
+import {Button} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+import ExistingForm from './existingForm'
 /**
  * COMPONENT
  */
@@ -10,7 +13,18 @@ export const UserHome = props => {
 
   return (
     <div className="homeContainer">
-      {email ? <h3>Welcome, {email}</h3> : <Spinner />}
+      {email ? (
+        <div className="home-context">
+          <h3 style={{marginBottom: '0px'}}>Current Forms</h3>
+          <small>Logged in as: {email}</small>
+          <ExistingForm />
+          <Link to="/newForm">
+            <Button color="yellow">Create New Form</Button>
+          </Link>
+        </div>
+      ) : (
+        <Spinner />
+      )}
     </div>
   )
 }

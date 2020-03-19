@@ -36,4 +36,15 @@ nav a:hover {
   height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.home-context {
+  height: 100vh;
+  padding: 2em;
+}
+
+.formCard {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
