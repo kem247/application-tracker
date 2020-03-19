@@ -55,7 +55,7 @@ class newForm extends Component {
       id: newId,
       question: this.state.question,
       type: this.state.type,
-      option: ''
+      option: []
     }
 
     const updateQuestionsArr = [...this.state.questionsArr, newQuestionObj]

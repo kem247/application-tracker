@@ -32,6 +32,7 @@ formRouter.post('/', async (req, res, next) => {
     })
 
     questions.forEach(async q => {
+      console.log('options', q.option)
       await Question.create({
         formId: newForm.id,
         question: q.question,
