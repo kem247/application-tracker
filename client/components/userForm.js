@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchQuestions} from '../store/questions.js'
-
+import {Form, Button, Segment} from 'semantic-ui-react'
 class userForm extends Component {
   constructor(props) {
     super(props)
@@ -28,23 +28,26 @@ class userForm extends Component {
   render() {
     console.log('PROPS', this.props)
     return (
-      <form onSubmit={this.handleSubmit}>
-        {this.props.questions.map(q => {
-          return (
-            <label>
-              {q.question}
-              <input
-                key={q.id}
-                type={q.type}
-                value={this.state.value}
-                onChange={this.handleChange}
-              />
-            </label>
-          )
-        })}
-
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="userForm">
+        <Segment color="yellow">
+          <Form onSubmit={this.handleSubmit}>
+            {this.props.questions.map(q => {
+              return (
+                <label>
+                  {q.question}
+                  <input
+                    key={q.id}
+                    type={q.type}
+                    value={this.state.value}
+                    onChange={this.handleChange}
+                  />
+                </label>
+              )
+            })}
+            <Button type="submit" value="Submit" />
+          </Form>
+        </Segment>
+      </div>
     )
   }
 }

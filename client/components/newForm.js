@@ -63,7 +63,8 @@ class newForm extends Component {
     this.setState({
       title: this.state.title,
       questionsArr: updateQuestionsArr,
-      question: ''
+      question: '',
+      type: this.state.type
     })
   }
 

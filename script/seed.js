@@ -33,37 +33,11 @@ async function seed() {
   //     title: 'test title'
   //   })
   // ])
-  const questions = await Promise.all([
-    Question.create({
-      question: 'First Name:',
-      type: 'text',
-      options: []
-    }),
-    Question.create({
-      question: 'Last Name:',
-      type: 'text',
-      options: []
-    }),
-    Question.create({
-      question: 'Email:',
-      type: 'text',
-      options: []
-    }),
-    Question.create({
-      question: 'City:',
-      type: 'text',
-      options: []
-    }),
-    Question.create({
-      question: 'State:',
-      type: 'text',
-      options: []
-    })
-  ])
+
   console.log(`seeded ${users.length} users`)
   // console.log(`seeded ${response.length} response(s)`)
   // console.log(`seeded ${form.length} form(s)`)
-  console.log(`seeded ${questions.length} question(s)`)
+
   console.log(`seeded successfully`)
 }
 
