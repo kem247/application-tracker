@@ -3,40 +3,42 @@ import {connect} from 'react-redux'
 import {fetchQuestions} from '../store/questions.js'
 import {Form, Button, Segment} from 'semantic-ui-react'
 class userForm extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       value: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleSubmit.bind(this)
-  }
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleSubmit(event) {
+    console.log('A name was submitted: ' + this.state.value)
     event.preventDefault()
-    this.handleChange(event)
+  }
+
+  handleChange(e) {
+    e.preventDefault()
+    this.setState({
+      [event.target.name]: e.target.value
+    })
   }
   async componentDidMount() {
     await this.props.fetchQuestions()
   }
   render() {
     console.log('PROPS', this.props)
+    console.log('STATE', this.state)
     return (
       <div className="userForm">
         <Segment color="yellow">
           <Form onSubmit={this.handleSubmit}>
             {this.props.questions.map(q => {
               return (
-                <label>
+                <label key={q.id}>
                   {q.question}
                   <input
-                    key={q.id}
+                    name={q.type}
                     type={q.type}
                     value={this.state.value}
                     onChange={this.handleChange}

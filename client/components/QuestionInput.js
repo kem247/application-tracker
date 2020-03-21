@@ -17,7 +17,6 @@ class QuestionInput extends Component {
           />
           <Form.Field
             onChange={(e, id) => handleChange(e, id)}
-            // onChange={this.handleOptions}
             width={6}
             name="type"
             control="select"
