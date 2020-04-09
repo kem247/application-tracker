@@ -46,11 +46,18 @@ const AuthForm = props => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
+        <h1>
+          Login Below or
+          <Link className="nav-item" to="/signup">
+            Sign Up
+          </Link>
+        </h1>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          {name === 'login' ? 'Admin Login' : 'Create New Admin'}
+          {name === 'Login'}
+          {/* {name === 'login' ? 'Admin Login' : 'Create New Admin'} */}
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit} name={name}>
           <Grid container spacing={2}>
@@ -138,7 +145,7 @@ const mapSignup = state => {
   console.log(state)
   return {
     name: 'signup',
-    displayName: 'Create New Admin',
+    displayName: 'Sign Up',
     error: state.user.error
   }
 }
@@ -150,12 +157,13 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      if (formName === 'login') {
-        dispatch(auth(email, password, formName))
-      } else {
-        const fullName = evt.target.accountName.value
-        dispatch(signup(fullName, email, password, formName))
-      }
+      dispatch(auth(email, password, formName))
+      // if (formName === 'login') {
+      //   dispatch(auth(email, password, formName))
+      // } else {
+      //   const fullName = evt.target.accountName.value
+      //   dispatch(signup(fullName, email, password, formName))
+      // }
     }
   }
 }

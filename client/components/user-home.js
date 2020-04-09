@@ -5,10 +5,11 @@ import Spinner from './spinner'
 import {Button} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import ExistingForm from './existingForm'
+
 /**
  * COMPONENT
  */
-export const UserHome = props => {
+const UserHome = props => {
   const {email} = props
 
   return (
