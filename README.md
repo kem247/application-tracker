@@ -1,4 +1,4 @@
-###  How To Install 
+###  How To Use 
 
 1. Fork and Clone Repository
 2. Type "npm install" in the terminal 
